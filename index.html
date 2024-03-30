@@ -9,8 +9,20 @@
 </head>
 <body>
     <h1>AR Button Example</h1>
-    <button id="arButton">View in AR</button>
+    <button id="arButton" onclick="openARQuickLook()">View in AR Quick Look</button>
     <div id="arContainer"></div>
     <script type="module" src="/main.js"></script>
+    <script>
+        function openARQuickLook() {
+            const modelURL = 'japanese_wooden_chair.usdz'; // Provide the path to your USDZ model
+            const anchor = document.createElement('a');
+            anchor.setAttribute('rel', 'ar');
+            anchor.setAttribute('href', modelURL);
+            anchor.appendChild(document.createElement('img'));
+            document.body.appendChild(anchor);
+            anchor.click();
+            document.body.removeChild(anchor);
+        }
+    </script>
 </body>
 </html>

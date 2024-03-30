@@ -1,5 +1,16 @@
 {
   "dependencies": {
     "three": "^0.163.0"
-  }
+  },
+  "name": "arnewprojectthree",
+  "version": "1.0.0",
+  "main": "main.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
