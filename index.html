@@ -1,17 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>AR Button Example</title>
+    <meta charset="UTF-8">
+    <title>AR Quick Look Button</title>
     <style>
-        body { margin: 0; }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
-    <h1>AR Button Example</h1>
-    <button id="arButton" onclick="openARQuickLook()">View in AR Quick Look</button>
-    <div id="arContainer"></div>
-    <script type="module" src="/main.js"></script>
+    <button onclick="openARQuickLook()">View in AR Quick Look</button>
     <script>
         function openARQuickLook() {
             const modelURL = 'japanese_wooden_chair.usdz'; // Provide the path to your USDZ model
