@@ -3,36 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <title>AR Quick Look Button</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
     <style>
         body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
+            overflow: hidden;
         }
-        button {
+        #arButton {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             padding: 10px 20px;
             font-size: 16px;
             background-color: #007bff;
             color: #fff;
             border: none;
             cursor: pointer;
+            z-index: 1;
         }
     </style>
 </head>
 <body>
-    <button onclick="openARQuickLook()">View in AR Quick Look</button>
+    <a-scene embedded arjs>
+        <!-- AR marker (for AR.js) -->
+        <a-marker preset="hiro">
+            <!-- Your 3D model to display -->
+            <a-entity gltf-model="url(Ceramic_pot_model.glb)" scale="0.01 0.01 0.01"></a-entity>
+        </a-marker>
+        <!-- AR camera (for AR.js) -->
+        <a-entity camera></a-entity>
+    </a-scene>
+
+    <button id="arButton" onclick="openAR()">View in AR</button>
+
     <script>
-        function openARQuickLook() {
-            const modelURL = 'Ceramic_pot_model.usdz'; // Provide the path to your USDZ model
-            const anchor = document.createElement('a');
-            anchor.setAttribute('rel', 'ar');
-            anchor.setAttribute('href', modelURL);
-            anchor.appendChild(document.createElement('img'));
-            document.body.appendChild(anchor);
-            anchor.click();
-            document.body.removeChild(anchor);
+        function openAR() {
+            const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+            if (iOS) {
+                const modelURL = 'Ceramic_pot_model.usdz';
+                const anchor = document.createElement('a');
+                anchor.setAttribute('rel', 'ar');
+                anchor.setAttribute('href', modelURL);
+                anchor.appendChild(document.createElement('img'));
+                document.body.appendChild(anchor);
+                anchor.click();
+                document.body.removeChild(anchor);
+            } else {
+                alert('AR Quick Look is not supported on this device.');
+            }
         }
     </script>
 </body>
