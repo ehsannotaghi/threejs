@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>AR Quick Look Button</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
     <style>
         body {
             margin: 0;
@@ -23,9 +22,21 @@
             cursor: pointer;
             z-index: 1;
         }
+        a-scene {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: 2;
+        }
     </style>
 </head>
 <body>
+    <button id="arButton" onclick="openAR()">View in AR</button>
+
     <a-scene embedded arjs>
         <!-- AR marker (for AR.js) -->
         <a-marker preset="hiro">
@@ -35,8 +46,6 @@
         <!-- AR camera (for AR.js) -->
         <a-entity camera></a-entity>
     </a-scene>
-
-    <button id="arButton" onclick="openAR()">View in AR</button>
 
     <script>
         function openAR() {
@@ -52,7 +61,8 @@
                 anchor.click();
                 document.body.removeChild(anchor);
             } else {
-                alert('AR Quick Look is not supported on this device.');
+                // Show A-Frame scene with the 3D model
+                document.querySelector('a-scene').style.display = 'block';
             }
         }
     </script>
